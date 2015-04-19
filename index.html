@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/takePhoto.css">
+    <title>Final App</title>
 </head>
 
 <body>
@@ -28,9 +31,13 @@
                 <p>Back</p>
             </div>
         </section>
+        
+        <!--footer-->
         <footer id="footer">
+        	<!--Take photo button with svg icon-->
             <div data-role="option" id="takeBtn">
-                <div class="tabIcon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <div class="tabIcon">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <path d="M47.5,25.4H25.7c-2.3,0-4.3-1.9-4.3-4.3v-3.7c0-2.3,1.9-4.3,4.3-4.3h21.7c2.3,0,4.3,1.9,4.3,4.3v3.7
 	C51.7,23.5,49.8,25.4,47.5,25.4z"/>
@@ -39,12 +46,14 @@
 <circle stroke="#FFFFFF" stroke-miterlimit="10" cx="36.8" cy="37.1" r="20.7"/>
 <circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="36.7" cy="37.1" r="13.4"/>
 <path stroke="#FFFFFF" stroke-miterlimit="10" d="M48.3,37.5h-2c-0.4-6-4.8-9.8-9.8-10v-2C42.5,25.8,47.9,30.5,48.3,37.5z"/>
-<path stroke="#FFFFFF" stroke-miterlimit="10" d="M45.1,36.5h-1.3c-0.2-4-3.4-6.4-6.4-6.5v-1.3C41.5,28.8,44.9,31.5,45.1,36.5z"/>
-</svg></div>
+<path stroke="#FFFFFF" stroke-miterlimit="10" d="M45.1,36.5h-1.3c-0.2-4-3.4-6.4-6.4-6.5v-1.3C41.5,28.8,44.9,31.5,45.1,36.5z"/></svg>
+				</div>
                 <h3>Take Photo</h3>
             </div>
+            <!--listview button with svg icon-->
             <div data-role="option" id="listBtn">
-                <div class="tabIcon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <div class="tabIcon">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 70 70" enable-background="new 0 0 70 70" xml:space="preserve">
 <rect x="10" y="12" width="8" height="8"/>
 <rect x="10" y="24" width="8" height="8"/>
@@ -54,12 +63,16 @@
 <rect x="22" y="24" width="40" height="8"/>
 <rect x="22" y="36" width="40" height="8"/>
 <rect x="22" y="48" width="40" height="8"/>
-</svg>
-</div>
+					</svg>
+				</div>
                 <h3>List Photos</h3>
             </div>
         </footer>
     </div>
+    
+<!--    <script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript" src="js/hammer.js"></script>
+    <script src="events/takePhoto.js"></script>
     <script src="events/events.js"></script>
 </body>
 </html>
