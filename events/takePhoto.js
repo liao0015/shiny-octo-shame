@@ -1,72 +1,60 @@
+var i, full, thumb, w, h, aspectRatio;
 
-var requiredFileCount = 2, currentFileCount = 0;
-
-document.addEventListener("DOMContentLoaded", onDeviceReady, false);
-//document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady(){
-	addHammerEventListener();
+function init( ){
+	//setup
+	//fetch the image
+	//load it at two sizes into the two canvases
+	full = document.getElementById("full");
+	thumb = document.getElementById("thumb");
+	i = document.createElement("img");
+	i.addEventListener("load", setCanvas);
+	i.src = "img/download.jpg";
 	
-	var css = document.createElement("link");
-    css.setAttribute("rel", "stylesheet");
-    css.addEventListener("load", loadCount);
-  
-    var s = document.createElement("script");
-    s.addEventListener("load", loadCount);
-  
-  	//css.setAttribute("href", "http://m.edumedia.ca/liao0015/mad9014/weather/css/style.css");
-//    s.setAttribute("src", "http://code.jquery.com/jquery-2.1.0.min.js");
-//	
-//  	document.querySelector("head").appendChild(css);
-//  	document.querySelector("head").appendChild(s);
-	
-	document.getElementById("btnClose").addEventListener("click", closeModalContact);
-	document.getElementById("btnCloseMap").addEventListener("click", closeModalMap);
-	
-	addContact();
-
-	document.addEventListener("scroll", handleScrolling, false);
-	
-	//setup a ajax call
-	var req = new XMLHttpRequest( );
-	req.open('POST', 'http://m.edumedia.ca/abcd0001/data/info.xml', false );
-	req.onreadystatechange = function( ){
-		if( req.readyState == 4){
-			if( req.status == 200){
-				//we have the info.xml page loaded
-				console.log(req.responseText);
-				//the req object will contain two main properties - req.responseText and req.responseXML
-				//responseText is used for JSON. 
-				//responseXML is used for XML.
-				console.log(req.responseXML);
-				//or save into a file
-				var xmlDoc = req.responseXML;
-			}
-		}
-	}
-	req.send( null ); 
+	document.getElementById("saveBtn").addEventListener("click", upload);
 }
 
-function addHammerEventListener(ev){
-	var tar = document.querySelector("[data-role=listview]");
-	var mc = new Hammer(tar, {});
+function setCanvas(ev){
+	//image has been loaded
+	w = i.width;
+	h = i.height;
+	aspectRatio = w/h;
+	//big image
+	full.height = 400;
+	full.style.height = "400px";
+	var fw = 400 * aspectRatio;
+	full.width = fw;
+	full.style.width = fw + "px";
+	i.width = fw;
+	i.height = 400;
+	var ctF = full.getContext('2d');
+	ctF.drawImage(i, 0, 0, fw, 400);
 	
-	var singleTap = new Hammer.Tap({event: 'tap'});
-	var doubleTap = new Hammer.Tap({event:'doubletap', taps:2, threshold:10, posThreshold:25});
-	mc.add([doubleTap, singleTap]);
+	//thumbnail
+	thumb.height = 200;
+	thumb.style.height = "200px";
+	var tw = 200 * aspectRatio;
+	thumb.width = tw;
+	thumb.style.width = tw + "px";
+	i.width = tw;
+	i.height = 200;
+	var ctT = thumb.getContext('2d');
+	ctT.drawImage(i, 0, 0, tw, 200);
 	
-	doubleTap.requireFailure(singleTap);
-	
-	mc.on("tap", function(ev){
-		document.querySelector("[data-role=modal]").style.display = "block";
-		document.querySelector("[data-role=overlay]").style.display = "block";
-		showInfor(ev);
-	});
-	mc.on("doubletap", function(ev){
-		document.querySelector("[data-role=map]").style.display = "block";
-		document.querySelector("[data-role=overlay]").style.display = "block";
-		getGeolocation(ev);
-	});
+}
+
+function upload(ev){
+	alert("img uploaded");
+	var fullpng = full.toDataURL("image/png");
+	var thumbpng = thumb.toDataURL("image/png");
+	fullpng = encodeURIComponent( fullpng );
+	thumbpng = encodeURIComponent( thumbpng );
+	var url = "http://faculty.edumedia.ca/griffis/mad9022/final-w15/save.php";
+	var postData = "dev=234234&thumb=" + thumbpng + "&img=" + fullpng;
+	sendRequest(url, imgSaved, postData);
+}
+
+function imgSaved(xhr){
+	alert(xhr.responseText);
 }
 
 

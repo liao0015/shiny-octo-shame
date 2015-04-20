@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", onDeviceReady, false);
 function onDeviceReady(){
 	//Hammer js tap handler
 	addHammerTapHandler();
+	//save photo
+	init();
 	//show take photo div
 	var takePhoto = document.getElementById("takeBtn");
 	takePhoto.addEventListener("click", function(){takePhotoPage();},false);

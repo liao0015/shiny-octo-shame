@@ -43,6 +43,34 @@ footer h3{
     padding-top: 1rem;
 }
 
+/*************form*************/
+#canvasDiv{
+	display:block;
+	float:left;
+	width:60%;
+	margin-left:2%;
+}
+
+#full{
+	display:block;
+	float:left;
+	margin-top:5%;
+}
+
+#thumb{
+	display:block;
+	float:left;
+	margin-top:32%;
+	margin-left:2%;
+}
+
+form{
+	display:block;
+	float:left;
+	margin-top:5%;
+}
+
+
 /*************list page*************/
 #listPage{
 	display = none;
