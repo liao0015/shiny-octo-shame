@@ -146,4 +146,13 @@ function closeModalPage(){
 function deletePhotos(ev){
 	alert("delete btn triggered!");
 	console.log("$$$$$"+ev.target.parentNode.parentNode.getAttribute("data-ref"));
+	var id = ev.target.parentNode.parentNode.getAttribute("data-ref");
+	var url = "http://faculty.edumedia.ca/griffis/mad9022/final-w15/delete.php?dev=234234&img_id="+id;
+	sendRequest(url, imgDeleted, null);
+}
+
+function imgDeleted(xhr){
+	var json = JSON.parse(xhr.responseText);
+	alert(json.message);
+	displayThumbnails();	
 }
