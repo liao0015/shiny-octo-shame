@@ -72,7 +72,7 @@ function displayThumbnails(ev){
 
 function thunmbnailReturned(xhr){
 	var json = JSON.parse(xhr.responseText);
-	alert("something");
+	alert("show thunbnails");
 	var div = document.querySelector("[data-role=listview]");
 	div.innerHTML="";
 	for (var i = 0; i < json.thumbnails.length; i++){
