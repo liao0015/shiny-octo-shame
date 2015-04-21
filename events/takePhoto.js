@@ -1,9 +1,5 @@
 var i, full, thumb, w, h, aspectRatio;
-
-function init( ){
-	//setup
-	//fetch the image
-	//load it at two sizes into the two canvases
+function init(){
 	full = document.getElementById("full");
 	thumb = document.getElementById("thumb");
 	i = document.createElement("img");
@@ -11,6 +7,33 @@ function init( ){
 	i.src = "img/download.jpg";
 	
 	document.getElementById("saveBtn").addEventListener("click", upload);
+}
+
+function imgSuccess(fileURI){
+	full = document.getElementById("full");
+	thumb = document.getElementById("thumb");
+	i = document.createElement("img");
+	i.addEventListener("load", setCanvas);
+	i.src = fileURI;
+	
+	document.getElementById("saveBtn").addEventListener("click", upload);
+}
+
+function imgFail(message){
+	 alert('Failed because: '+ message);
+}
+
+var imgOptions = {
+	quality : 75,
+	destinationType: Camera.DestinationType.FILE_URI,
+	sourceType: Camera.PictureSourceType.CAMERA,
+	allowEdit : true,
+	encodingType : Camera.EncodingType.JPEG,
+	mediaType: Camera.MediaType.PICTURE,
+	targetWidth : 100,
+	targetHeight : 100,
+	cameraDirection : Camera.Direction.FRONT,
+	saveToPhotoAlbum : false
 }
 
 function setCanvas(ev){

@@ -7,8 +7,10 @@ document.addEventListener("DOMContentLoaded", onDeviceReady, false);
 function onDeviceReady(){
 	//Hammer js tap handler
 	addHammerTapHandler();
-	//save photo
+	
 	init();
+	//get picture through camera API
+	/*navigator.camera.getPicture( imgSuccess, imgFail, imgOptions );*/
 	//show take photo div
 	var takePhoto = document.getElementById("takeBtn");
 	takePhoto.addEventListener("click", function(){takePhotoPage();},false);
@@ -31,11 +33,6 @@ function addHammerTapHandler(){
 	
 	mc.on("tap", function(ev){
 		console.log(ev.target);
-		/*console.log(ev.target.parentNode);
-		console.log(ev.target.parentNode.childNodes);
-		console.log(ev.target.parentNode.firstChild);
-		console.log(ev.target.parentNode.secondChild);
-		console.log(ev.target.parentNode.childNodes[1]);*/
 		console.log(ev.target.nodeName);
 		if(ev.target.nodeName == "CANVAS"){
 			document.querySelector("[data-role=modal]").style.display = "block";
@@ -56,6 +53,8 @@ function takePhotoPage(ev){
 	document.getElementById("listPage").style.display = "none";
 	document.querySelector("[data-role=modal]").style.display = "none";
 	document.querySelector("[data-role=overlay]").style.display = "none";
+	
+	//navigator.camera.getPicture( imgSuccess, imgFail, imgOptions );
 	
 }
 
